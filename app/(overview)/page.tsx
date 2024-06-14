@@ -1,14 +1,15 @@
 import Link from "next/link";
-import Hero from "../components/landing/hero";
-import { ArrowCircleRightOutlined } from "@mui/icons-material";
-
+import Hero from "../../components/landing/hero";
 import HotestTopics from "@/components/landing/hotest-topics";
+import Services from "@/components/landing/services";
 
 export default function Home() {
   return (
     <div>
       <div className="newsreader">
-        <div><Hero /></div>
+        <div>
+          <Hero />
+        </div>
 
         <div className="p-2 mt-8 ">
           <h1 className="text-center text-2xl font-semibold mb-4">
@@ -19,6 +20,7 @@ export default function Home() {
 
         <div className="p-2 mt-8 ">
           <h1 className="text-center text-2xl font-semibold mb-4">Services</h1>
+          <Services />
         </div>
 
         <div className="bg-gray-200 text-center p-4 rounded-lg w-[95%] m-auto mt-8 drop-shadow-lg lg:w-[50%]">
@@ -36,8 +38,8 @@ export default function Home() {
         <div className="w-[95%] mt-8 p-4 text-center m-auto lg:w-[35%]">
           <h1 className="text-2xl font-semibold mb-2">Book Our Services</h1>
           <p>
-            At TechWatt.ai we believe we can&apos;t build without you. Your concerns
-            are our priority.
+            At TechWatt.ai we believe we can&apos;t build without you. Your
+            concerns are our priority.
           </p>
           <div className="w-full flex justify-center my-2">
             <Link

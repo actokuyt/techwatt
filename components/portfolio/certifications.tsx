@@ -1,12 +1,12 @@
-"use client"
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { useCertsFetchContext } from "@/contexts/fetch-contexts/certs-fetch-context";
-import Image from "next/image";
+import { certifications } from "@/utils/data";
 
-export default function Certifications() {
-  const {certs} = useCertsFetchContext()
+export default async function Certifications() {
+  const allCerts = await certifications()
+  if (!allCerts) {
+    return<></>
+  }
 
   return (
     <div className="md:w-[50%] md:mx-auto" >
@@ -20,10 +20,10 @@ export default function Certifications() {
         showStatus={false}
         stopOnHover={true}
       >
-        {certs.map((cert, index) => {
+        {allCerts.map((cert, index) => {
             return (
                 <div key={index} className="mb-8" >
-                    <Image src={cert.imgsrc} alt={cert.title} className="mb-2" />
+                    <img src={cert.imgsrc} alt={cert.title} className="mb-2" />
                     <h1 className="text-xl font-semibold" >{cert.title}</h1>
                 </div>
             )

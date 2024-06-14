@@ -11,7 +11,6 @@ interface ArticleCardsProp {
   img: string;
   title: string;
   description: string;
-  height: number;
   author: string;
   avatar: string;
   date: string;
@@ -22,7 +21,6 @@ interface ServicesCardsProp {
   img: string;
   title: string;
   description: string;
-  height: number;
 }
 
 interface IframeCardsProp {
@@ -36,56 +34,49 @@ export function ArticleCards({
   img,
   title,
   description,
-  height,
   avatar,
   author,
   date,
   category,
-}: ArticleCardsProp) {
+}: ArticleCardsProp) {  
   return (
-    <Card className="newsreader">
+    <Card className="p-2">
       <CardMedia
         component="img"
         image={img}
         alt={title}
-        sx={{ height: { height } }}
+        className="h-[250px] mb-4"
       />
       <CardContent>
         <div className="mb-4" >
           <div className="flex items-center">
             <Avatar alt="" src={avatar} />
-            <div>
+            <div className="ml-2">
               <p className="font-semibold leading-[1em]"> {author}</p>
 
               <p className="text-sm leading-[1em]">{date}</p>
             </div>
           </div>
-          <Typography
-            variant="body2"
-            className="newsreader"
+          <p
+            className="p-2 font-semibold leading-[1em]"
           >
             {category}
-          </Typography>
+          </p>
         </div>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          className="newsreader"
+        <h1
+          className="text-xl font-semibold"
         >
           {title}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          className="newsreader"
+        </h1>
+        <p
+          className=""
         >
           {description}
-        </Typography>
+        </p>
       </CardContent>
-      <CardActions>
-        <button >Share</button>
-        <Link href={`/blog/${id}`}>Learn More</Link>
+      <CardActions className="mt-4">
+        <button className="mr-4 underline" >Share</button>
+        <Link href={`/blog/${id}`} className="underline">Learn More</Link>
       </CardActions>
     </Card>
   );
@@ -95,25 +86,21 @@ export function ServicesCards({
   img,
   title,
   description,
-  height,
 }: ServicesCardsProp) {
   return (
-    <Card className="newsreader">
+    <Card className="p-2">
       <CardMedia
         component="img"
         image={img}
         alt={title}
-        sx={{ height: { height } }}
+        className="h-[250px] mb-4"
       />
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          className="newsreader"
+        <h1
+          className="text-xl font-semibold"
         >
           {title}
-        </Typography>
+        </h1>
         <Typography
           variant="body2"
           color="text.secondary"
@@ -128,7 +115,7 @@ export function ServicesCards({
 
 export function IframeCards({ src, title, description }: IframeCardsProp) {
   return (
-    <Card className="newsreader">
+    <Card className="p-2">
       <CardContent>
         <Iframe src={src} title={title} className="w-full h-[15em] mb-4 z-20" />
         <Typography

@@ -12,7 +12,7 @@ export default function page() {
                 <h1 className="text-center text-2xl font-semibold mb-4" >Certifications</h1>
 
                 <div>
-                    <Certifications />
+                    {/* <Certifications /> */}
                 </div>
             </div>
         </div>

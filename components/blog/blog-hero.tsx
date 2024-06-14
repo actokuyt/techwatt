@@ -24,7 +24,7 @@ export default function BlogHero({ article, id }: Props) {
 
     return `${year}-${month}-${day}`;
   }
-  
+
   return (
     <div className="relative h-[30em]">
       <div className="bg-[#ddeef5] pt-4 grid grid-cols-1 justify-items-center overflow-hidden h-[20em]">
@@ -43,7 +43,6 @@ export default function BlogHero({ article, id }: Props) {
         <div className="w-[90%] mx-auto md:w-[50%] lg:w-[40%]">
           <ArticleCards
             id={id}
-            height={200}
             img={article.imgsrc}
             avatar={article.avatar}
             title={article.title}

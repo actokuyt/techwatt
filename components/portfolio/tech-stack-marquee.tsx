@@ -1,18 +1,19 @@
-"use client"
-
 import Marquee from "react-fast-marquee";
-import { useStackFetchContext } from "@/contexts/fetch-contexts/stack-fetch-context";
 import Image from "next/image";
+import { techStack } from "@/utils/data";
 
-export default function TechStackMarquee() {
-  const {stack} = useStackFetchContext()
+export default async function TechStackMarquee() {
+  const stack = await techStack()
+  if (!stack) {
+    return<></>
+  }
 
   return (
     <div className="w-screen md:w-full">
     <Marquee gradient={true} >
       {stack.map((tech, index) => {
         return (
-          <Image
+          <img
             key={index}
             src={tech.imgsrc}
             alt={tech.title}
