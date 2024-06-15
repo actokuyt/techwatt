@@ -1,20 +1,25 @@
 import PortfolioHero from "@/components/portfolio/portfolio-hero";
-import Certifications from "@/components/portfolio/certifications";
+import CertificationsCarousel from "@/components/portfolio/certifications-carousel";
+import { CertsFetchProvider } from "@/contexts/fetch-contexts/certs-fetch-context";
 
 export default function page() {
-    return(
+  return (
+    <div>
+      <div>
+        <PortfolioHero />
+      </div>
+
+      <div>
+        <h1 className="text-center text-2xl font-semibold mb-4">
+          Certifications
+        </h1>
+
         <div>
-            <div>
-            <PortfolioHero />
-            </div>
-
-            <div>
-                <h1 className="text-center text-2xl font-semibold mb-4" >Certifications</h1>
-
-                <div>
-                    {/* <Certifications /> */}
-                </div>
-            </div>
+          <CertsFetchProvider>
+            <CertificationsCarousel />
+          </CertsFetchProvider>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

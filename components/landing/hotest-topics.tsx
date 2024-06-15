@@ -1,12 +1,10 @@
+"use client"
+
+import { useBlogArticlesFetchContext } from "@/contexts/fetch-contexts/blog-articles-fetch-context";
 import { ArticleCards } from "../mui-card";
-import { blogArticles } from "@/utils/data";
 
-export default async function HotestTopics() {
-  let articles = await blogArticles();
-
-  if (!articles) {
-    return <></>;
-  }
+export default function HotestTopics() {
+const {articles} = useBlogArticlesFetchContext()
 
   function formatDateTime(milliseconds: number) {
     var date = new Date(milliseconds);
