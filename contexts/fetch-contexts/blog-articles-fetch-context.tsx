@@ -7,7 +7,7 @@ interface ArticleCardsProp {
   _id: string;
   imgsrc: string;
   title: string;
-  desc: string;
+  description: string;
   height: number;
   author: string;
   avatar: string;
@@ -21,12 +21,12 @@ type ProviderTypes = {
 };
 
 interface BlogArticlesContextType {
-  blogArticles: ArticleCardsProp[];
+  articles: ArticleCardsProp[];
   setBlogArticles: (articles: ArticleCardsProp[]) => void;
 }
 
 const BlogArticlesFetchContext = React.createContext<BlogArticlesContextType>({
-  blogArticles: [],
+  articles: [],
   setBlogArticles: () => {},
 });
 
@@ -34,17 +34,16 @@ export const useBlogArticlesFetchContext = () =>
   React.useContext(BlogArticlesFetchContext);
 
 export const BlogArticlesFetchProvider = ({ children }: ProviderTypes) => {
-  const [blogArticles, setBlogArticles] = React.useState<ArticleCardsProp[]>(
+  const [articles, setBlogArticles] = React.useState<ArticleCardsProp[]>(
     []
   );
 
-  let endPoint = process.env.SERVER_ENDPOINT
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${endPoint}/blog`);
-        setBlogArticles(response.data);
+        const response = await axios.get(`/api/articles`);
+        setBlogArticles(response.data.data);
       } catch (error) {
         console.error("Error fetching blog articles:", error);
       }
@@ -54,7 +53,7 @@ export const BlogArticlesFetchProvider = ({ children }: ProviderTypes) => {
   }, []);
 
   return (
-    <BlogArticlesFetchContext.Provider value={{blogArticles, setBlogArticles}}>
+    <BlogArticlesFetchContext.Provider value={{articles, setBlogArticles}}>
       {children}
     </BlogArticlesFetchContext.Provider>
   );

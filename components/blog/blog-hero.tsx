@@ -1,21 +1,20 @@
+"use client"
+
+import { useBlogArticlesFetchContext } from "@/contexts/fetch-contexts/blog-articles-fetch-context";
 import { ArticleCards } from "../mui-card";
 
-interface ArticleCardsProp {
-  imgsrc: string;
-  avatar: string;
-  title: string;
-  desc: string;
-  author: string;
-  date: string;
-  category: string;
-}
 
-interface Props {
-  article: ArticleCardsProp;
-  id: string;
-}
+export default function BlogHero() {
+  const { articles } = useBlogArticlesFetchContext();
 
-export default function BlogHero({ article, id }: Props) {
+  if (!articles || articles.length === 0) {
+    return <div>Loading...</div>;
+  }
+  
+  let random = Math.floor(Math.random() * articles.length);
+  let article=articles[random]
+  let id=articles[random]._id
+
   function formatDateTime(milliseconds: number) {
     var date = new Date(milliseconds);
     var year = date.getFullYear();
@@ -46,7 +45,7 @@ export default function BlogHero({ article, id }: Props) {
             img={article.imgsrc}
             avatar={article.avatar}
             title={article.title}
-            description={article.desc}
+            description={article.description}
             author={article.author}
             date={formatDateTime(parseInt(article.date))}
             category={article.category}

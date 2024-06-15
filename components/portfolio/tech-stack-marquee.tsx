@@ -1,12 +1,11 @@
-import Marquee from "react-fast-marquee";
-import Image from "next/image";
-import { techStack } from "@/utils/data";
+"use client"
 
-export default async function TechStackMarquee() {
-  const stack = await techStack()
-  if (!stack) {
-    return<></>
-  }
+import { useStackFetchContext } from "@/contexts/fetch-contexts/stack-fetch-context";
+import Marquee from "react-fast-marquee";
+
+
+export default function TechStackMarquee() {
+const {stack} = useStackFetchContext()
 
   return (
     <div className="w-screen md:w-full">

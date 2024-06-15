@@ -1,13 +1,10 @@
+"use client"
+
+import { useBlogArticlesFetchContext } from "@/contexts/fetch-contexts/blog-articles-fetch-context";
 import { ArticleCards } from "../../components/mui-card";
-import { blogArticles } from "@/utils/data";
 
-export default async function Blog() {
-  const articles = await blogArticles();
-  if (!articles) {
-    return <></>;
-  }
-
-  let random = Math.floor(Math.random() * blogArticles.length);
+export default function Blog() {
+  const { articles } = useBlogArticlesFetchContext();
 
   function formatDateTime(milliseconds: number) {
     var date = new Date(milliseconds);
@@ -27,7 +24,7 @@ export default async function Blog() {
             key={index}
             img={article.imgsrc}
             title={article.title}
-            description={article.desc}
+            description={article.description}
             avatar={article.avatar}
             author={article.author}
             date={formatDateTime(parseInt(article.date))}

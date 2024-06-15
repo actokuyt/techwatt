@@ -31,13 +31,12 @@ export const StackFetchProvider = ({ children }: ProviderTypes) => {
     []
   );
 
-  let endPoint = ""
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${endPoint}/stack`);
-        setStack(response.data);
+        const response = await axios.get(`api/stack`);
+        setStack(response.data.data);
       } catch (error) {
         console.error("Error fetching services:", error);
       }

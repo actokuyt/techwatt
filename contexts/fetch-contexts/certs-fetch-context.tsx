@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import axios from "axios";
 
@@ -29,13 +31,11 @@ export const CertsFetchProvider = ({ children }: ProviderTypes) => {
     []
   );
 
-  let endPoint = ""
-
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${endPoint}/certs`);
-        setCerts(response.data);
+        const response = await axios.get("api/certs");
+        setCerts(response.data.data);
       } catch (error) {
         console.error("Error fetching services:", error);
       }
