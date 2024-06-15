@@ -45,7 +45,7 @@ export default function BlogHero() {
             img={article.imgsrc}
             avatar={article.avatar}
             title={article.title}
-            description={article.desc}
+            description={article.description}
             author={article.author}
             date={formatDateTime(parseInt(article.date))}
             category={article.category}
