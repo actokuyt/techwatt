@@ -75,7 +75,6 @@ export function ArticleCards({
         </p>
       </CardContent>
       <CardActions className="mt-4">
-        <button className="mr-4 underline" >Share</button>
         <Link href={`/blog/${id}`} className="underline">Learn More</Link>
       </CardActions>
     </Card>
