@@ -7,7 +7,7 @@ import { ServicesFetchProvider } from "@/contexts/fetch-contexts/services-fetch-
 
 export default function Home() {
   return (
-    <div className="pt-[5em]">
+    <div className="pt-[4em]">
       <div>
         <Hero />
       </div>

@@ -1,24 +1,24 @@
 import "animate.css";
 import Link from "next/link";
 import Image from "next/image";
-import robotMl from "../../public/robot-ml.png"
-import ml from "../../public/ml.png"
+import robotMl from "../../public/robot-ml.png";
+import ml from "../../public/ml.png";
 
 export default function Hero() {
   return (
-    <div className="w-screen h-screen content-center">
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute top-0 w-screen h-screen -z-50 object-cover"
-      >
-        <source src="/bg-vid.mp4" type="video/mp4" />
-      </video>
+    <div className="relative w-screen min-h-screen md:min-h-[40%] content-center py-8 ">
+        <video
+          autoPlay
+          muted
+          loop
+          className="object-cover absolute top-0 w-screen h-full -z-50"
+        >
+          <source src="/bg-vid.mp4" type="video/mp4" />
+        </video>
 
-      <div className="flex flex-col lg:flex-row lg:w-[70%] lg:m-auto">
+      <div className="flex flex-col lg:flex-row lg:w-[70%] lg:m-auto lg:items-center">
         <div className="w-[90%] h-[300px] mx-auto banner-img lg:basis-1/3">
-          <div className="animate__animated animate__zoomIn">
+          <div className="animate__animated animate__zoomIn pt-[3em]">
             <div className="relative w-[300px] h-[300px] mx-auto">
               <Image
                 className="absolute w-[300px] h-[300px]"
@@ -40,8 +40,8 @@ export default function Hero() {
               There&apos;s Power In Tech
             </h1>
             <p className="text-white text-xl w-[96%] text-center">
-              Hey!, TechWatt here, wouldn&apos;t you like to integrate AI into your
-              business SEAMLESSLY?
+              Hey!, TechWatt here, wouldn&apos;t you like to integrate AI into
+              your business SEAMLESSLY?
             </p>
           </div>
           <div className="w-full flex justify-center mt-4">

@@ -8,8 +8,8 @@ export default function Page() {
       <div className="p-2 pt-[5em]">
         <BlogHero />
 
-        <div className="mt-[8em] mx-2 mb-8">
-          <h1 className="text-2xl text-center font-semibold mb-8">
+        <div className="mt-[11em] mx-2 mb-8 md:-mt-[5em] lg:mt-[2em]">
+          <h1 className="text-2xl text-center font-semibold mb-2">
             Latest Posts
           </h1>
           <Blog />
