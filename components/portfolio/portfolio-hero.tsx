@@ -27,10 +27,10 @@ export default function PortfolioHero() {
       <div className="lg:basis-3/5 lg:pt-28 basis-2/3">
         <div className="mx-4 text-l mb-12">
           <p className="text-center">
-            Transforming complex concepts into easy-to-understand lessons, I'm
+            Transforming complex concepts into easy-to-understand lessons, I&apos;m
             Felix Sam Nanor, the host of Tech Watt, a YouTube channel where I
             teach Programming, AI, ML, Computer Vision, Electronics and Robotics
-            to thousands of eager learners worldwide. Whether you're an aspiring
+            to thousands of eager learners worldwide. Whether you&apos;re an aspiring
             tech enthusiast or a seasoned professional, join me on a journey to
             master cutting-edge technologies and unleash your full potential.
           </p>
