@@ -5,10 +5,10 @@ import { BlogArticlesFetchProvider } from "@/contexts/fetch-contexts/blog-articl
 export default function Page() {
   return (
     <BlogArticlesFetchProvider>
-      <div className="p-2 pt-[5em]">
+      <div className="p-2s pt-[5em]b">
         <BlogHero />
 
-        <div className="mt-[11em] mx-2 mb-8 md:-mt-[5em] lg:mt-[2em]">
+        <div className="mx-2 mb-8 mt-4">
           <h1 className="text-2xl text-center font-semibold mb-2">
             Latest Posts
           </h1>
