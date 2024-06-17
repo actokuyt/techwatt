@@ -4,6 +4,9 @@ import { useBlogArticlesFetchContext } from "@/contexts/fetch-contexts/blog-arti
 import { ArticleCards } from "../mui-card";
 import { Avatar } from "@mui/material";
 import Link from "next/link";
+import "animate.css";
+import Image from "next/image";
+import heroBg from "../../public/blog-hero-bg2.jpg";
 
 export default function BlogHero() {
   const { articles } = useBlogArticlesFetchContext();
@@ -26,17 +29,19 @@ export default function BlogHero() {
   }
 
   return (
-    <div className="relative h-[30em]">
-      <div className="bg-[#ddeef5] pt-4 grid grid-cols-1 justify-items-center overflow-hidden h-[20em]">
-        <div>
-          <p className="p-2 text-center">
-            Latest Industry News, Interviews, Technologies and Resources all in
-            One Place.{" "}
-          </p>
-        </div>
-        <span className="relative bg-white block rounded-full w-[120%] h-[15em] translate-y-[40%] -rotate-[5deg] lg:w-[120%] lg:h-[30em] lg:translate-y-[30%] lg:-rotate-[5deg]"></span>
-      </div>
-      <div className="w-full absolute -bottom-[7em] md:hidden">
+    <div className="relative w-screen min-h-screen md:min-h-[40%] pt-[5em] p-4">
+      <Image
+        src={heroBg}
+        alt="hero bg"
+        className="object-cover absolute top-0 left-0 right-0 w-full h-full -z-50"
+      />
+
+      <p className="p-2 text-center">
+        Latest Industry News, Interviews, Technologies and Resources all in One
+        Place.{" "}
+      </p>
+
+      <div className="w-full md:hidden">
         <h1 className="text-center text-2xl font-semibold mb-2">
           Featured Article
         </h1>
@@ -53,7 +58,8 @@ export default function BlogHero() {
           />
         </div>
       </div>
-      <div className="hidden md:block w-full absolute bottom-[8em] lg:bottom-[2em]">
+
+      <div className="hidden md:block w-full">
         <h1 className="text-center text-2xl font-semibold mb-2">
           Featured Article
         </h1>
@@ -62,12 +68,14 @@ export default function BlogHero() {
             <img
               src={article.imgsrc}
               alt={article.title}
-              className="w-[400px] lg:w-[650px] h-[250px] lg:h-[350px] rounded-2xl border-4 border-gray-300"
+              className="w-[400px] lg:w-[650px] h-[250px] lg:h-[350px] rounded-2xl "
             />
           </div>
           <div className="basis-2/5 flex items-center">
             <div className="w-full">
-              <h1 className="text-xl text-center font-semibold">{article.title}</h1>
+              <h1 className="text-xl text-center font-semibold">
+                {article.title}
+              </h1>
               <p className="text-center">{article.description}</p>
               <div className="flex items-center mt-8">
                 <Avatar alt="" src={article.avatar} />
@@ -87,7 +95,9 @@ export default function BlogHero() {
                   {article.category}
                 </p>
               </div>
-              <Link href={`/blog/${id}`} className="underline">Learn More</Link>
+              <Link href={`/blog/${id}`} className="underline">
+                Learn More
+              </Link>
             </div>
           </div>
         </div>

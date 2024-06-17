@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/mui-form";
+import { ContactForm } from "@/components/form";
 
 export default function Page() {
   return (
