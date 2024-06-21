@@ -23,6 +23,7 @@ export default function MuiAutoComplete({ options, label }: PropTypes) {
       autoHighlight
       selectOnFocus
       sx={{ width: 300 }}
+      // className="border border-gray-300 rounded-lg p-2"
       options={options}
       renderInput={(params) => <TextField {...params} label={label} />}
       value={searchInputValue}

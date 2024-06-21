@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import clsx from "clsx";
+import { TextField } from "@mui/material";
 
 export function ContactForm() {
   const [submitState, setSubmitState] = React.useState("Submit");
@@ -212,7 +213,7 @@ export function LoginForm() {
     }
   }, [user]);
   return (
-    <div className="border border-gray-300 rounded-lg p-2 w-full">
+    <div className="border border-gray-300 rounded-lg p-2 w-full mx-auto md:w-[50%] lg:w-[30%]">
       <form onSubmit={login} className="grid grid-cols-1 gap-2">
         <div className="flex flex-col">
           <label htmlFor="user">User:</label>
@@ -253,174 +254,176 @@ export function LoginForm() {
   );
 }
 
-// interface ManageBlogFormProps {
-//   id?: string | null;
-//   title?: string | null;
-//   description?: string | null;
-//   category?: string | null;
-//   imgsrc?: string | null;
-//   detail?: string | null;
-// }
+interface ManageBlogFormProps {
+  id?: string | null;
+  title?: string | null;
+  description?: string | null;
+  category?: string | null;
+  imgsrc?: string | null;
+  detail?: string | null;
+}
 
-// export function ManageBlogForm({
-//   id = null,
-//   title = null,
-//   description = null,
-//   category = null,
-//   imgsrc = null,
-//   detail = null,
-// }: ManageBlogFormProps) {
-//   const [submit, setSubmit] = React.useState("Submit");
-//   const [formValues, setFormValues] = React.useState<ManageBlogFormProps>({
-//     title,
-//     description,
-//     category,
-//     imgsrc,
-//     detail,
-//   });
+export function ManageBlogForm({
+  id = null,
+  title = null,
+  description = null,
+  category = null,
+  imgsrc = null,
+  detail = null,
+}: ManageBlogFormProps) {
+  const router = useRouter()
+  const [submit, setSubmit] = React.useState("Submit");
+  const [formValues, setFormValues] = React.useState<ManageBlogFormProps>({
+    title,
+    description,
+    category,
+    imgsrc,
+    detail,
+  });
 
-//   function resetForm() {
-//     setFormValues({
-//       title,
-//       description,
-//       category,
-//       imgsrc,
-//       detail,
-//     });
-//   }
+  function resetForm() {
+    setFormValues({
+      title,
+      description,
+      category,
+      imgsrc,
+      detail,
+    });
+  }
 
-//   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-//     event.preventDefault();
-//     setSubmit("Submitting");
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmit("Submitting");
 
-//     if (id) {
-//       try {
-//         const response = await axios.put(`${endPoint}/blog/${id}`, formValues);
-//         if (response.status === 200) {
-//           Swal.fire({
-//             toast: true,
-//             position: "bottom",
-//             icon: "success",
-//             title: "Post Updated Successfully",
-//             showConfirmButton: false,
-//             timer: 2000,
-//             timerProgressBar: true,
-//           });
-//         }
-//       } catch (error: any) {
-//         console.error("Error:", error);
-//         Swal.fire({
-//           toast: true,
-//           position: "bottom",
-//           icon: "error",
-//           title: "something went wrong",
-//           showConfirmButton: false,
-//           timer: 5000,
-//           timerProgressBar: true,
-//         });
-//       } finally {
-//         setSubmit("submit");
-//       }
-//     } else {
-//       try {
-//         const response = await axios.post(`${endPoint}/blog/`, formValues);
-//         if (response.status === 200) {
-//           Swal.fire({
-//             toast: true,
-//             position: "bottom",
-//             icon: "success",
-//             title: "Post Sent Successfully",
-//             showConfirmButton: false,
-//             timer: 2000,
-//             timerProgressBar: true,
-//           });
-//         }
-//       } catch (error) {
-//         console.error("Error:", error);
-//         Swal.fire({
-//           toast: true,
-//           position: "bottom",
-//           icon: "error",
-//           title: "something went wrong",
-//           showConfirmButton: false,
-//           timer: 5000,
-//           timerProgressBar: true,
-//         });
-//       } finally {
-//         resetForm();
-//         setSubmit("Submit");
-//       }
-//     }
-//   }
+    if (id) {
+      try {
+        const response = await axios.put(`/api/articles/${id}`, formValues);
+        if (response.status === 200) {
+          Swal.fire({
+            toast: true,
+            position: "bottom",
+            icon: "success",
+            title: "Post Updated Successfully",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+          });
+          router.push("/admin/manage-blog")
+        }
+      } catch (error: any) {
+        console.error("Error:", error);
+        Swal.fire({
+          toast: true,
+          position: "bottom",
+          icon: "error",
+          title: "something went wrong",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      } finally {
+        setSubmit("submit");
+      }
+    } else {
+      try {
+        const response = await axios.post(`/api/articles/`, formValues);
+        if (response.status === 200) {
+          Swal.fire({
+            toast: true,
+            position: "bottom",
+            icon: "success",
+            title: "Post Sent Successfully",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+          });
+          resetForm();
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        Swal.fire({
+          toast: true,
+          position: "bottom",
+          icon: "error",
+          title: "something went wrong",
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      } finally {
+        setSubmit("Submit");
+      }
+    }
+  }
 
-//   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-//     const { name, value } = event.target;
-//     setFormValues((prevFormValues) => ({
-//       ...prevFormValues,
-//       [name]: value,
-//     }));
-//   }
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+    }));
+  }
 
-//   return (
-//     <div>
-//       <form
-//         onSubmit={handleSubmit}
-//         className="grid grid-cols-1 gap-4 mx-auto md:w-[70%] lg:w-[60%]"
-//       >
-//         <div className="grid-cols-1 gap-4 grid lg:grid-cols-2 lg:gap-4">
-//           <TextField
-//             id="title"
-//             name="title"
-//             label="Title"
-//             variant="outlined"
-//             value={formValues.title || ""}
-//             onChange={handleInputChange}
-//           />
-//           <TextField
-//             id="description"
-//             name="description"
-//             label="Description"
-//             variant="outlined"
-//             value={formValues.description || ""}
-//             onChange={handleInputChange}
-//           />
-//         </div>
-//         <TextField
-//           id="category"
-//           name="category"
-//           label="Category"
-//           variant="outlined"
-//           value={formValues.category || ""}
-//           onChange={handleInputChange}
-//         />
-//         <TextField
-//           id="imgsrc"
-//           name="imgsrc"
-//           label="Image Source"
-//           variant="outlined"
-//           value={formValues.imgsrc || ""}
-//           onChange={handleInputChange}
-//         />
-//         <TextField
-//           id="detail"
-//           name="detail"
-//           label="Blog Details"
-//           variant="outlined"
-//           multiline
-//           rows={20}
-//           value={formValues.detail || ""}
-//           onChange={handleInputChange}
-//         />
-//         <button
-//           type="submit"
-//           className="p-2 bg-blue-300 text-black w-[6em] newsreader"
-//         >
-//           {submit}
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 gap-4 mx-auto md:w-[70%] lg:w-[60%]"
+      >
+        <div className="grid-cols-1 gap-4 grid lg:grid-cols-2 lg:gap-4">
+          <TextField
+            id="title"
+            name="title"
+            label="Title"
+            variant="outlined"
+            value={formValues.title || ""}
+            onChange={handleInputChange}
+          />
+          <TextField
+            id="description"
+            name="description"
+            label="Description"
+            variant="outlined"
+            value={formValues.description || ""}
+            onChange={handleInputChange}
+          />
+        </div>
+        <TextField
+          id="category"
+          name="category"
+          label="Category"
+          variant="outlined"
+          value={formValues.category || ""}
+          onChange={handleInputChange}
+        />
+        <TextField
+          id="imgsrc"
+          name="imgsrc"
+          label="Image Source"
+          variant="outlined"
+          value={formValues.imgsrc || ""}
+          onChange={handleInputChange}
+        />
+        <TextField
+          id="detail"
+          name="detail"
+          label="Blog Details"
+          variant="outlined"
+          multiline
+          rows={20}
+          value={formValues.detail || ""}
+          onChange={handleInputChange}
+        />
+        <button
+          type="submit"
+          className="p-2 bg-blue-300 text-black w-[6em] newsreader"
+        >
+          {submit}
+        </button>
+      </form>
+    </div>
+  );
+}
 
 // interface ManageProjectFormType {
 //   id?: string | null;

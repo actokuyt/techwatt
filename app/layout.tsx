@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Newsreader } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { BlogArticlesFetchProvider } from "@/contexts/fetch-contexts/blog-articles-fetch-context";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 const newsreader = Newsreader({ subsets: ["latin"] });
 
@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        {/* <BlogArticlesFetchProvider> */}
-          <body className={newsreader.className}>{children}</body>
-        {/* </BlogArticlesFetchProvider> */}
-      </AppRouterCacheProvider>
+      <body className={newsreader.className}>
+        {/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
+          <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+        {/* </AppRouterCacheProvider> */}
+      </body>
     </html>
   );
 }
